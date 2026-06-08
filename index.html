@@ -4,7 +4,47 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Don't Click 👀</title>
-  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      padding: 30px;
+    }
+    .page {
+      display: none;
+    }
+    .active {
+      display: block;
+    }
+    button {
+      width: 90%;
+      padding: 15px;
+      margin-top: 20px;
+      font-size: 18px;
+      border: none;
+      border-radius: 12px;
+      background-color: #ff4d6d;
+      color: white;
+    }
+    h1 { font-size: 32px; }
+    p { font-size: 18px; }
+    .message {
+      margin-top: 25px;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+    }
+  </style>
 </head>
 <body>
 <div class="container">
@@ -25,12 +65,23 @@
     <h1>Surprise ✈️</h1>
     <p>My prince deserves everything… 👑</p>
     <p>(And yes, today I’m talking about Adu 😌)</p>
+<div class="message">
+  <p>Just one thing… please don’t scold me at the end 🥺</p>
+  <p>I just couldn’t sit here and do nothing for Adu’s birthday…</p>
+  <p>That video where he was calling “mamaji”… I don’t know, it just got to me 😭</p>
+  <p>There’s no arrogance or ego in this, I promise.</p>
+  <p>I just felt like if you go, it’ll make him and aunty really happy ❤️</p>
+  <p>And when we meet… just hug me a little extra okay? 🥺🤍</p>
+  <p><b>No scolding.</b></p>
+</div>
+<canvas id="confetti"></canvas>
   </div>
 </div>
 <script>
 function nextPage(pageNumber) {
-  document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
-  document.getElementById('page' + pageNumber).style.display = 'block';
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page' + pageNumber).classList.add('active');
+  if (pageNumber === 4) startConfetti();
 }
 function startExperience() {
   nextPage(2);
@@ -54,6 +105,36 @@ function typeText() {
     setTimeout(() => nextPage(3), 1500);
   }
 }
+/* CONFETTI */
+function startConfetti() {
+  const canvas = document.getElementById("confetti");
+  const ctx = canvas.getContext("2d");
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  let pieces = [];
+  for (let i = 0; i < 120; i++) {
+    pieces.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      size: Math.random() * 5 + 2,
+      speed: Math.random() * 3 + 1
+    });
+  }
+  function update() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "white";
+    pieces.forEach(p => {
+      ctx.fillRect(p.x, p.y, p.size, p.size);
+      p.y += p.speed;
+      if (p.y > canvas.height) {
+        p.y = 0;
+        p.x = Math.random() * canvas.width;
+      }
+    });
+    requestAnimationFrame(update);
+  }
+  update();
+}
 </script>
 </body>
-</htm
+</ht
