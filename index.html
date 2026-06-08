@@ -50,14 +50,7 @@
       margin-top: 40px;
       border-radius: 16px;
     }
-    .message {
-      display: none;
-      margin-top: 20px;
-      font-size: 17px;
-      line-height: 1.7;
-      animation: fade 0.8s ease;
-    }
-    #p10 {
+    #p11 {
       max-height: 90vh;
       overflow-y: auto;
     }
@@ -108,43 +101,41 @@
     <p>System hacked 💀</p>
     <button onclick="go(10)">Try again?</button>
   </div>
-  <!-- FINAL -->
+  <!-- IMAGE PAGE -->
   <div class="page" id="p10">
     <h2>Surprise ✈️</h2>
-<img src="IMG_3501.jpeg">
-<!-- NEW BUTTON -->
-<button onclick="revealMessage()">Click me… last I promise 🥺</button>
-<!-- HIDDEN MESSAGE -->
-<div class="message" id="finalMessage">
-  <p>Please dont scold me🥲🥺</p>
-  <p>Bas wo adu ka video me mamaji ko bula rha tha dekh ke nhi hua bas :,)</p>
-  <p>Abhi rent ka itna sab kuch tha warna i know tu pakka se jata</p>
-  <p>Aunty sabse itna jhagra hua ekbar milega to bahut acha lagega unko🙃</p>
-  <p>Arrogance paise ka ghamand wo kuch nhi hai trust me</p>
-  <p>Bas thora kuch adu ko gift krna tha</p>
-  <p>Isliye tereko gift 🎁 wrap krke bhej rhe</p>
-  <p>Please</p>
-  <p>Please 🙏🏻 🥲</p>
-  <p>Daatna mat isliye dar ke github link bheje</p>
-  <p>Warna photo dekhte hi jhar padta🙃</p>
-  <p>🙃🙃 thoru sa zor se hug 🫂 kr dena milenge jab</p>
-  <p><b>No daating mamaji dar laagi ❤️🫱🏻‍🫲🏼</b></p>
-</div>
-<canvas id="confetti"></canvas>
+    <img src="IMG_3501.jpeg">
+    <button onclick="go(11)">Click me… last I promise 🥺</button>
+    <canvas id="confetti"></canvas>
+  </div>
+  <!-- FINAL MESSAGE PAGE -->
+  <div class="page" id="p11">
+    <p>Please dont scold me🥲🥺</p>
+    <p>Bas wo adu ka video me mamaji ko bula rha tha dekh ke nhi hua bas :,)</p>
+    <p>Abhi rent ka itna sab kuch tha warna i know tu pakka se jata</p>
+    <p>Aunty sabse itna jhagra hua ekbar milega to bahut acha lagega unko🙃</p>
+    <p>Arrogance paise ka ghamand wo kuch nhi hai trust me</p>
+    <p>Bas thora kuch adu ko gift krna tha</p>
+    <p>Isliye tereko gift 🎁 wrap krke bhej rhe</p>
+    <p>Please</p>
+    <p>Please 🙏🏻 🥲</p>
+    <p>Daatna mat isliye dar ke github link bheje</p>
+    <p>Warna photo dekhte hi jhar padta🙃</p>
+    <p>🙃🙃 thoru sa zor se hug 🫂 kr dena milenge jab</p>
+    <p><b>No daating mamaji dar laagi ❤️🫱🏻‍🫲🏼</b></p>
+    <canvas id="confetti2"></canvas>
   </div>
 </div>
 <script>
 function go(n){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById('p'+n).classList.add('active');
-  if(n===10) confetti();
+  if(n===10) confetti("confetti");
+  if(n===11) confetti("confetti2");
 }
-function revealMessage(){
-  document.getElementById("finalMessage").style.display = "block";
-}
-/* 💖 HEART CONFETTI */
-function confetti(){
-  const canvas = document.getElementById("confetti");
+/* HEART CONFETTI */
+function confetti(id){
+  const canvas = document.getElementById(id);
   const ctx = canvas.getContext("2d");
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
