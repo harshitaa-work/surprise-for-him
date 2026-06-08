@@ -8,13 +8,17 @@
     body {
       font-family: 'Segoe UI', sans-serif;
       background: linear-gradient(135deg, #ffd6e0, #fff0f5);
-      text-align: center;
       margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
     .container {
-      padding: 40px 20px;
+      width: 100%;
       max-width: 500px;
-      margin: auto;
+      text-align: center;
+      padding: 20px;
     }
     .page { display: none; }
     .active {
@@ -22,8 +26,8 @@
       animation: fade 0.5s ease;
     }
     @keyframes fade {
-      from {opacity: 0;}
-      to {opacity: 1;}
+      from {opacity: 0; transform: translateY(10px);}
+      to {opacity: 1; transform: translateY(0);}
     }
     button {
       width: 90%;
@@ -34,21 +38,21 @@
       border-radius: 14px;
       background: #ff6f91;
       color: white;
-      cursor: pointer;
     }
     p {
-      font-size: 18px;
+      font-size: 20px;
       margin: 15px 0;
+      line-height: 1.5;
     }
     .message {
-      margin-top: 25px;
-      font-size: 16px;
+      margin-top: 20px;
+      font-size: 17px;
       line-height: 1.7;
     }
     img {
-      width: 90%;
-      max-width: 350px;
-      margin-top: 20px;
+      width: 85%;
+      max-width: 320px;
+      margin-top: 15px;
       border-radius: 16px;
       box-shadow: 0 10px 20px rgba(0,0,0,0.2);
     }
@@ -62,67 +66,60 @@
 </head>
 <body>
 <div class="container">
-  <!-- Step 1 -->
   <div class="page active" id="p1">
     <p>Hi 👀</p>
     <button onclick="go(2)">Please click me</button>
   </div>
-  <!-- Step 2 -->
   <div class="page" id="p2">
     <p>Pretty pleaseeeee 🥺👉👈</p>
     <button onclick="go(3)">Okay fine</button>
   </div>
-  <!-- Step 3 -->
   <div class="page" id="p3">
     <p>Okay now you’re officially in my trap 💀🔥</p>
     <button onclick="go(4)">What trap?</button>
   </div>
-  <!-- Step 4 -->
   <div class="page" id="p4">
     <p>Something very illegal is about to happen…</p>
     <button onclick="go(5)">Wait what 😳</button>
   </div>
-  <!-- Step 5 -->
   <div class="page" id="p5">
     <p>Relax… not that illegal 😌</p>
     <button onclick="go(6)">Hmm suspicious</button>
   </div>
-  <!-- Step 6 -->
   <div class="page" id="p6">
     <p>Okay fine… I was a little scared too 🥲</p>
     <button onclick="go(7)">Continue</button>
   </div>
-  <!-- Step 7 -->
   <div class="page" id="p7">
     <p>But then I thought… some risks are worth taking 😏</p>
     <button onclick="go(8)">What did you do?</button>
   </div>
-  <!-- Step 8 -->
   <div class="page" id="p8">
     <p>So I did something…</p>
     <button onclick="go(9)">SHOW ME 👀</button>
   </div>
-  <!-- Fake error -->
   <div class="page" id="p9">
     <p>⚠️ ERROR ⚠️</p>
     <p>System hacked 💀</p>
     <button onclick="go(10)">Try again?</button>
   </div>
-  <!-- FINAL REVEAL -->
   <div class="page" id="p10">
     <h2>Surprise ✈️</h2>
-    <p>My prince deserves everything… 👑</p>
-    <p>(And yes, today I’m talking about Adu 😌)</p>
-<!-- YOUR IMAGE -->
 <img src="IMG_3501.jpeg" alt="surprise">
 <div class="message">
-  <p>Just one thing… please don’t scold me at the end 🥺</p>
-  <p>I just couldn’t sit here and do nothing for Adu’s birthday…</p>
-  <p>That video where he was calling “mamaji”… I don’t know, it just got to me 😭</p>
-  <p>There’s no arrogance or ego in this, I promise.</p>
-  <p>I just felt like if you go, it’ll make him and aunty really happy ❤️</p>
-  <p>And when we meet… just hug me a little extra okay? 🥺🤍</p>
-  <p><b>No scolding.</b></p>
+  <p>Please dont scold me🥲🥺</p>
+  <p>Bas wo adu ka video me mamaji ko bula rha tha dekh ke nhi hua bas :,)</p>
+  <p>Abhi rent ka itna sab kuch tha warna i know tu pakka se jata</p>
+  <p>Aunty sabse itna jhagra hua ekbar milega to bahut acha lagega unko🙃</p>
+  <p>Arrogance paise ka ghamand wo kuch nhi hai trust me</p>
+  <p>Bas thora kuch adu ko gift krna tha</p>
+  <p>Isliye tereko gift 🎁 wrap krke bhej rhe</p>
+  <p>Please</p>
+  <p>Please 🙏🏻 🥲</p>
+  <p>Daatna mat isliye dar ke github link bheje</p>
+  <p>Warna photo dekhte hi jhar padta🙃</p>
+  <p>🙃🙃 thoru sa zor se hug 🫂 kr dena milenge jab</p>
+  <p><b>No daating mamaji dar laagi ❤️🫱🏻‍🫲🏼</b></p>
 </div>
 <canvas id="confetti"></canvas>
   </div>
@@ -133,35 +130,46 @@ function go(n){
   document.getElementById('p'+n).classList.add('active');
   if(n===10) confetti();
 }
+/* HEART CONFETTI */
 function confetti(){
-  const c=document.getElementById("confetti");
-  const ctx=c.getContext("2d");
-  c.width=window.innerWidth;
-  c.height=window.innerHeight;
-  let p=[];
-  for(let i=0;i<120;i++){
-    p.push({
-      x:Math.random()*c.width,
-      y:Math.random()*c.height,
-      s:3+Math.random()*3,
-      sp:1+Math.random()*2
+  const canvas = document.getElementById("confetti");
+  const ctx = canvas.getContext("2d");
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  let hearts = [];
+  for(let i=0;i<40;i++){
+    hearts.push({
+      x: Math.random()*canvas.width,
+      y: Math.random()*canvas.height,
+      size: 12 + Math.random()*8,
+      speed: 1 + Math.random()*2,
+      drift: (Math.random()-0.5)*2
     });
   }
-  function draw(){
-    ctx.clearRect(0,0,c.width,c.height);
-    ctx.fillStyle="white";
-    p.forEach(e=>{
-      ctx.fillRect(e.x,e.y,e.s,e.s);
-      e.y+=e.sp;
-      if(e.y>c.height){
-        e.y=0;
-        e.x=Math.random()*c.width;
+  function drawHeart(x, y, size){
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.bezierCurveTo(x, y - size/2, x - size, y - size/2, x - size, y);
+    ctx.bezierCurveTo(x - size, y + size/2, x, y + size, x, y + size);
+    ctx.bezierCurveTo(x, y + size, x + size, y + size/2, x + size, y);
+    ctx.bezierCurveTo(x + size, y - size/2, x, y - size/2, x, y);
+    ctx.fill();
+  }
+  function animate(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    hearts.forEach(h=>{
+      ctx.fillStyle = ["#ff6f91","#ff85a2","#ff4d6d"][Math.floor(Math.random()*3)];
+      drawHeart(h.x, h.y, h.size);
+      h.y += h.speed;
+      h.x += h.drift;
+      if(h.y > canvas.height){
+        h.y = -20;
+        h.x = Math.random()*canvas.width;
       }
     });
-    requestAnimationFrame(draw);
+    requestAnimationFrame(animate);
   }
-  draw();
+  animate();
 }
 </script>
 </body>
-</ht
