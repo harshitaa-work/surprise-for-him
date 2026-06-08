@@ -6,38 +6,34 @@
   <title>Don't Click 👀</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      font-family: sans-serif;
+      background: linear-gradient(135deg, #ffd6e0, #fff0f5);
       text-align: center;
       margin: 0;
-      padding: 0;
     }
     .container {
       padding: 30px;
+      max-width: 500px;
+      margin: auto;
     }
-    .page {
-      display: none;
-    }
-    .active {
-      display: block;
-    }
+    .page { display: none; }
+    .active { display: block; }
     button {
-      width: 90%;
       padding: 15px;
       margin-top: 20px;
-      font-size: 18px;
-      border: none;
+      width: 90%;
       border-radius: 12px;
-      background-color: #ff4d6d;
+      border: none;
+      background: #ff6f91;
       color: white;
+      font-size: 18px;
     }
-    h1 { font-size: 32px; }
-    p { font-size: 18px; }
-    .message {
-      margin-top: 25px;
-      font-size: 16px;
-      line-height: 1.6;
+    .typing-line {
+      opacity: 0;
+      margin: 10px 0;
+      transition: 0.5s;
     }
+    .show { opacity: 1; }
     canvas {
       position: fixed;
       top: 0;
@@ -54,7 +50,13 @@
     <button onclick="startExperience()">Pretty pleaseeeee 🥺👉👈</button>
   </div>
   <div class="page" id="page2">
-    <p id="typingText"></p>
+    <p class="typing-line">Okay now you’re officially in my trap 💀🔥</p>
+    <p class="typing-line">Something very illegal is about to happen…</p>
+    <p class="typing-line">Relax… not that illegal 😌</p>
+    <p class="typing-line">Okay fine… I was a little scared too 🥲</p>
+    <p class="typing-line">But then I thought…</p>
+    <p class="typing-line">some risks are worth taking 😏</p>
+    <p class="typing-line">So I did something…</p>
   </div>
   <div class="page" id="page3">
     <h1>⚠️ ERROR ⚠️</h1>
@@ -65,75 +67,62 @@
     <h1>Surprise ✈️</h1>
     <p>My prince deserves everything… 👑</p>
     <p>(And yes, today I’m talking about Adu 😌)</p>
-<div class="message">
-  <p>Just one thing… please don’t scold me at the end 🥺</p>
-  <p>I just couldn’t sit here and do nothing for Adu’s birthday…</p>
-  <p>That video where he was calling “mamaji”… I don’t know, it just got to me 😭</p>
-  <p>There’s no arrogance or ego in this, I promise.</p>
-  <p>I just felt like if you go, it’ll make him and aunty really happy ❤️</p>
-  <p>And when we meet… just hug me a little extra okay? 🥺🤍</p>
+<div>
+  <p>Just one thing… please don’t scold me 🥺</p>
+  <p>I couldn’t do nothing for Adu’s birthday…</p>
+  <p>That video where he called mamaji… it got to me 😭</p>
+  <p>No arrogance, I promise ❤️</p>
+  <p>You going will make him & aunty happy</p>
+  <p>And when we meet… hug me extra 🥺</p>
   <p><b>No scolding.</b></p>
 </div>
 <canvas id="confetti"></canvas>
   </div>
 </div>
 <script>
-function nextPage(pageNumber) {
+function nextPage(n) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.getElementById('page' + pageNumber).classList.add('active');
-  if (pageNumber === 4) startConfetti();
+  document.getElementById('page'+n).classList.add('active');
+  if(n===4) confetti();
 }
-function startExperience() {
+function startExperience(){
   nextPage(2);
-  typeText();
+  showLines();
 }
-const text = `Okay now you’re officially in my trap 💀🔥
-Something very illegal is about to happen…
-Relax… not *that* illegal 😌
-Okay fine… I was a *little* scared too 🥲
-But then I thought…
-some risks are worth taking 😏
-So I did something…`;
-let i = 0;
-function typeText() {
-  const el = document.getElementById("typingText");
-  if (i < text.length) {
-    el.innerHTML += text.charAt(i);
-    i++;
-    setTimeout(typeText, 40);
-  } else {
-    setTimeout(() => nextPage(3), 1500);
+function showLines(){
+  let lines=document.querySelectorAll('.typing-line');
+  let i=0;
+  function reveal(){
+    if(i<lines.length){
+      lines[i].classList.add('show');
+      i++;
+      setTimeout(reveal,800);
+    } else {
+      setTimeout(()=>nextPage(3),1200);
+    }
   }
+  reveal();
 }
-/* CONFETTI */
-function startConfetti() {
-  const canvas = document.getElementById("confetti");
-  const ctx = canvas.getContext("2d");
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-  let pieces = [];
-  for (let i = 0; i < 120; i++) {
-    pieces.push({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      size: Math.random() * 5 + 2,
-      speed: Math.random() * 3 + 1
-    });
+function confetti(){
+  const canvas=document.getElementById("confetti");
+  const ctx=canvas.getContext("2d");
+  canvas.width=window.innerWidth;
+  canvas.height=window.innerHeight;
+  let p=[];
+  for(let i=0;i<80;i++){
+    p.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,s:3+Math.random()*3});
   }
-  function update() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = "white";
-    pieces.forEach(p => {
-      ctx.fillRect(p.x, p.y, p.size, p.size);
-      p.y += p.speed;
-      if (p.y > canvas.height) {
-        p.y = 0;
-        p.x = Math.random() * canvas.width;
-      }
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.fillStyle="white";
+    p.forEach(e=>{
+      ctx.fillRect(e.x,e.y,e.s,e.s);
+      e.y+=2;
+      if(e.y>canvas.height)e.y=0;
     });
-    requestAnimationFrame(update);
+    requestAnimationFrame(draw);
   }
-  update();
+  draw();
 }
 </script>
 </body>
