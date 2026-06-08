@@ -52,9 +52,16 @@
     img {
       width: 85%;
       max-width: 320px;
-      margin-top: 15px;
+      margin-top: 40px;
+      margin-bottom: 10px;
       border-radius: 16px;
       box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+    /* 👇 final page scroll fix */
+    #p10 {
+      max-height: 90vh;
+      overflow-y: auto;
+      padding-top: 20px;
     }
     canvas {
       position: fixed;
@@ -130,7 +137,7 @@ function go(n){
   document.getElementById('p'+n).classList.add('active');
   if(n===10) confetti();
 }
-/* HEART CONFETTI */
+/* 💖 HEART CONFETTI */
 function confetti(){
   const canvas = document.getElementById("confetti");
   const ctx = canvas.getContext("2d");
