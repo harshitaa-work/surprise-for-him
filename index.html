@@ -20,14 +20,16 @@
       text-align: center;
       padding: 20px;
     }
-    .page { display: none; }
+    .page {
+      display: none;
+    }
     .active {
       display: block;
-      animation: fade 0.5s ease;
+      animation: fade 0.4s ease;
     }
     @keyframes fade {
-      from {opacity: 0; transform: translateY(10px);}
-      to {opacity: 1; transform: translateY(0);}
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
     button {
       width: 90%;
@@ -47,12 +49,8 @@
     img {
       width: 85%;
       max-width: 320px;
-      margin-top: 40px;
+      margin-top: 20px;
       border-radius: 16px;
-    }
-    #p11 {
-      max-height: 90vh;
-      overflow-y: auto;
     }
     canvas {
       position: fixed;
@@ -106,7 +104,7 @@
     <h2>Surprise ✈️</h2>
     <img src="IMG_3501.jpeg">
     <button onclick="go(11)">Click me… last I promise 🥺</button>
-    <canvas id="confetti"></canvas>
+    <canvas id="confetti1"></canvas>
   </div>
   <!-- FINAL MESSAGE PAGE -->
   <div class="page" id="p11">
@@ -130,7 +128,7 @@
 function go(n){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById('p'+n).classList.add('active');
-  if(n===10) confetti("confetti");
+  if(n===10) confetti("confetti1");
   if(n===11) confetti("confetti2");
 }
 /* HEART CONFETTI */
