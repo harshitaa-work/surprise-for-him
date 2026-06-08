@@ -8,40 +8,52 @@
 </head>
 <body>
 <div class="container">
-  <!-- Page 1 -->
   <div class="page active" id="page1">
     <h1>Hi 👀</h1>
     <p>Please click me</p>
-    <button id="startBtn">Pretty pleaseeeee 🥺👉👈</button>
+    <button onclick="startExperience()">Pretty pleaseeeee 🥺👉👈</button>
   </div>
-  <!-- Page 2 -->
   <div class="page" id="page2">
     <p id="typingText"></p>
   </div>
-  <!-- Page 3 -->
   <div class="page" id="page3">
     <h1>⚠️ ERROR ⚠️</h1>
     <p>System hacked 💀</p>
     <button onclick="nextPage(4)">Try again?</button>
   </div>
-  <!-- Page 4 -->
   <div class="page" id="page4">
-    <h1 class="big">Surprise ✈️</h1>
+    <h1>Surprise ✈️</h1>
     <p>My prince deserves everything… 👑</p>
     <p>(And yes, today I’m talking about Adu 😌)</p>
-<div class="message">
-  <p>Just one thing… please don’t scold me at the end 🥺</p>
-  <p>I just couldn’t sit here and do nothing for Adu’s birthday…</p>
-  <p>That video where he was calling “mamaji”… I don’t know, it just got to me 😭</p>
-  <p>There’s no arrogance or ego in this, I promise.</p>
-  <p>I just felt like if you go, it’ll make him and aunty really happy ❤️</p>
-  <p>And when we meet… just hug me a little extra okay? 🥺🤍</p>
-  <p><b>No scolding.</b></p>
-</div>
-<canvas id="confetti"></canvas>
   </div>
 </div>
-<!-- IMPORTANT: script at bottom -->
-<script src="./script.js"></script>
+<script>
+function nextPage(pageNumber) {
+  document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
+  document.getElementById('page' + pageNumber).style.display = 'block';
+}
+function startExperience() {
+  nextPage(2);
+  typeText();
+}
+const text = `Okay now you’re officially in my trap 💀🔥
+Something very illegal is about to happen…
+Relax… not *that* illegal 😌
+Okay fine… I was a *little* scared too 🥲
+But then I thought…
+some risks are worth taking 😏
+So I did something…`;
+let i = 0;
+function typeText() {
+  const el = document.getElementById("typingText");
+  if (i < text.length) {
+    el.innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typeText, 40);
+  } else {
+    setTimeout(() => nextPage(3), 1500);
+  }
+}
+</script>
 </body>
-</ht
+</htm
