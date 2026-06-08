@@ -44,24 +44,22 @@
       margin: 15px 0;
       line-height: 1.5;
     }
-    .message {
-      margin-top: 20px;
-      font-size: 17px;
-      line-height: 1.7;
-    }
     img {
       width: 85%;
       max-width: 320px;
       margin-top: 40px;
-      margin-bottom: 10px;
       border-radius: 16px;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
     }
-    /* 👇 final page scroll fix */
+    .message {
+      display: none;
+      margin-top: 20px;
+      font-size: 17px;
+      line-height: 1.7;
+      animation: fade 0.8s ease;
+    }
     #p10 {
       max-height: 90vh;
       overflow-y: auto;
-      padding-top: 20px;
     }
     canvas {
       position: fixed;
@@ -110,10 +108,14 @@
     <p>System hacked 💀</p>
     <button onclick="go(10)">Try again?</button>
   </div>
+  <!-- FINAL -->
   <div class="page" id="p10">
     <h2>Surprise ✈️</h2>
-<img src="IMG_3501.jpeg" alt="surprise">
-<div class="message">
+<img src="IMG_3501.jpeg">
+<!-- NEW BUTTON -->
+<button onclick="revealMessage()">Click me… last I promise 🥺</button>
+<!-- HIDDEN MESSAGE -->
+<div class="message" id="finalMessage">
   <p>Please dont scold me🥲🥺</p>
   <p>Bas wo adu ka video me mamaji ko bula rha tha dekh ke nhi hua bas :,)</p>
   <p>Abhi rent ka itna sab kuch tha warna i know tu pakka se jata</p>
@@ -136,6 +138,9 @@ function go(n){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById('p'+n).classList.add('active');
   if(n===10) confetti();
+}
+function revealMessage(){
+  document.getElementById("finalMessage").style.display = "block";
 }
 /* 💖 HEART CONFETTI */
 function confetti(){
